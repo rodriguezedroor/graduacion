@@ -134,55 +134,62 @@
       pointer-events: none;
     }
 
-    /* ---- NUEVOS ELEMENTOS DECORATIVOS: BIRRETES Y GLOBOS ---- */
+    /* ---- BIRRETES Y GLOBOS MÁS VISIBLES (tamaño aumentado, colores intensos) ---- */
     .floating-birrete {
       position: absolute;
-      font-size: 2.8rem;
+      font-size: 4.2rem;        /* mucho más grande */
       user-select: none;
       pointer-events: none;
-      z-index: 2;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.6)) drop-shadow(0 0 8px #b3925a);
-      opacity: 0.7;
-      animation: float 7s infinite ease-in-out;
+      z-index: 20;               /* por encima de casi todo */
+      filter: drop-shadow(0 12px 20px #000000cc) drop-shadow(0 0 15px #e5b96b);
+      opacity: 0.95;             /* casi opaco */
+      animation: float 6s infinite ease-in-out;
+      text-shadow: 0 0 12px #ffd78a, 0 0 30px #b37b48;
     }
     .floating-balloon {
       position: absolute;
-      font-size: 2.2rem;
+      font-size: 3.8rem;         /* más grande */
       user-select: none;
       pointer-events: none;
-      z-index: 2;
-      filter: drop-shadow(0 8px 10px #00000066) drop-shadow(0 0 6px #a55238);
-      opacity: 0.6;
-      animation: floatBalloon 9s infinite alternate;
+      z-index: 20;
+      filter: drop-shadow(0 12px 20px #000000b3);
+      opacity: 0.95;
+      animation: floatBalloon 8s infinite alternate;
+      text-shadow: 0 0 20px currentColor;
     }
-    /* variantes de color para globos (vino y dorado) */
+    /* colores específicos para globos (usando colores sólidos) */
     .balloon-gold {
-      filter: drop-shadow(0 8px 10px #00000066) drop-shadow(0 0 8px #dbb05c);
+      color: #f5c84e;            /* dorado intenso */
+      filter: drop-shadow(0 12px 20px #000000b3) drop-shadow(0 0 20px #f5c84e);
     }
     .balloon-wine {
-      filter: drop-shadow(0 8px 10px #00000066) drop-shadow(0 0 8px #a13e4b);
+      color: #c72f5a;           /* vino tinto brillante */
+      filter: drop-shadow(0 12px 20px #000000b3) drop-shadow(0 0 20px #c72f5a);
     }
 
     @keyframes float {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-16px) rotate(3deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
+      0% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-25px) rotate(4deg); }
+      100% { transform: translateY(0px) rotate(-2deg); }
     }
     @keyframes floatBalloon {
-      0% { transform: translateY(0px) translateX(0px) rotate(-2deg); }
-      100% { transform: translateY(-24px) translateX(10px) rotate(3deg); }
+      0% { transform: translateY(0px) translateX(0px) rotate(-4deg); }
+      100% { transform: translateY(-30px) translateX(15px) rotate(6deg); }
     }
 
-    /* posiciones específicas para cada elemento */
-    .birrete-1 { top: 5%; left: 3%; animation-delay: 0s; }
-    .birrete-2 { bottom: 15%; right: 2%; animation-delay: 1.2s; font-size: 3.2rem; }
-    .birrete-3 { top: 20%; right: 8%; animation-delay: 2.5s; opacity: 0.5; }
-    .balloon-1 { bottom: 30%; left: 2%; animation-delay: 0.7s; }
-    .balloon-2 { top: 40%; right: 5%; animation-delay: 1.8s; }
-    .balloon-3 { bottom: 10%; left: 15%; animation-delay: 2.2s; }
-    .balloon-4 { top: 70%; left: 20%; animation-delay: 1.0s; }
+    /* posiciones ajustadas para mejor distribución */
+    .birrete-1 { top: 2%; left: 1%; animation-delay: 0s; }
+    .birrete-2 { bottom: 5%; right: 0%; animation-delay: 1.5s; font-size: 4.5rem; }
+    .birrete-3 { top: 15%; right: 2%; animation-delay: 2.8s; font-size: 4rem; }
+    .birrete-4 { bottom: 25%; left: 3%; animation-delay: 0.9s; font-size: 4.8rem; } /* extra */
+    
+    .balloon-1 { bottom: 20%; left: 0%; animation-delay: 0.3s; font-size: 4rem; }
+    .balloon-2 { top: 25%; right: 1%; animation-delay: 1.2s; font-size: 4.5rem; }
+    .balloon-3 { bottom: 10%; left: 10%; animation-delay: 2.0s; font-size: 4.2rem; }
+    .balloon-4 { top: 60%; left: 2%; animation-delay: 0.7s; font-size: 4.3rem; }
+    .balloon-5 { top: 45%; right: 5%; animation-delay: 2.5s; font-size: 4rem; } /* extra */
 
-    /* marco de la foto */
+    /* marco de la foto (ligeramente elevado para evitar que los elementos lo tapen) */
     .portrait-frame {
       width: 140px;
       height: 140px;
@@ -190,9 +197,9 @@
       border-radius: 50%;
       background: linear-gradient(135deg, #c9aa6b, #8b6d42);
       padding: 3px;
-      box-shadow: 0 0 50px rgba(201, 170, 107, 0.4);
+      box-shadow: 0 0 60px rgba(201, 170, 107, 0.7);
       position: relative;
-      z-index: 10;
+      z-index: 25;              /* por encima de birretes */
     }
     .portrait-inner {
       width: 100%;
@@ -208,26 +215,26 @@
       box-shadow: inset 0 0 20px #1e150e;
     }
 
-    /* tarjetas de información */
+    /* tarjetas de información con z-index alto para quedar sobre los elementos flotantes */
     .detail-card {
       display: flex;
       align-items: center;
       gap: 1.2rem;
-      background: rgba(15, 12, 10, 0.65);
+      background: rgba(15, 12, 10, 0.8); /* más opaco para resaltar sobre fondos */
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(190, 155, 100, 0.25);
+      border: 1px solid rgba(190, 155, 100, 0.4);
       border-radius: 80px;
       padding: 1.3rem 2rem;
       margin: 2rem 0;
-      box-shadow: 0 15px 30px -15px #000000;
+      box-shadow: 0 15px 30px -10px #000000;
       transition: all 0.2s;
       position: relative;
-      z-index: 10;
+      z-index: 30;               /* muy arriba */
     }
     .detail-card:hover {
-      border-color: rgba(220, 185, 120, 0.6);
-      box-shadow: 0 0 30px rgba(190, 155, 100, 0.2);
+      border-color: rgba(220, 185, 120, 0.8);
+      box-shadow: 0 0 40px rgba(190, 155, 100, 0.3);
     }
     .icon-lg {
       font-size: 2.6rem;
@@ -258,15 +265,15 @@
       font-weight: 300;
     }
 
-    /* cita central con fondo vino tinto */
+    /* cita central */
     .testimonial-bg {
-      background: rgba(70, 20, 30, 0.2);
+      background: rgba(70, 20, 30, 0.3);
       border-radius: 60px 60px 60px 10px;
       padding: 2.8rem 2.5rem;
-      border: 1px solid #632b40;
-      box-shadow: 0 20px 30px -10px black, inset 0 1px 2px rgba(200, 120, 100, 0.2);
+      border: 1px solid #8b3a52;
+      box-shadow: 0 20px 30px -10px black, inset 0 1px 3px rgba(200, 120, 100, 0.3);
       position: relative;
-      z-index: 10;
+      z-index: 30;
     }
     .testimonial-bg p {
       font-size: 1.7rem;
@@ -279,20 +286,20 @@
       word-spacing: 2px;
     }
 
-    /* panel de confirmación (solo WhatsApp) */
+    /* panel de confirmación */
     .rsvp-panel {
-      background: rgba(8, 5, 5, 0.8);
-      border: 1px solid #8b1e3f;
+      background: rgba(8, 5, 5, 0.9);
+      border: 1px solid #a03a58;
       border-radius: 60px 60px 60px 10px;
       padding: 3rem 2rem;
       text-align: center;
-      box-shadow: 0 20px 40px -5px #000, 0 0 0 1px #402b1c inset;
+      box-shadow: 0 20px 40px -5px #000, 0 0 0 1px #5a2e30 inset;
       position: relative;
-      z-index: 10;
+      z-index: 30;
     }
     .btn-wine {
-      background: rgba(120, 25, 45, 0.7);
-      border: 1px solid #bb9a64;
+      background: rgba(139, 30, 63, 0.9);
+      border: 1px solid #dbb16a;
       color: #f3e1c0;
       backdrop-filter: blur(4px);
       min-width: 240px;
@@ -300,8 +307,8 @@
       margin: 0 auto;
     }
     .btn-wine:hover {
-      background: rgba(150, 40, 60, 0.9);
-      border-color: #ebca97;
+      background: rgba(170, 45, 80, 1);
+      border-color: #f5d590;
     }
 
     /* footer */
@@ -309,9 +316,9 @@
       background: #040202;
       padding: 3.5rem 0 2rem;
       text-align: center;
-      border-top: 1px solid #392e22;
+      border-top: 1px solid #5a4a38;
       position: relative;
-      z-index: 10;
+      z-index: 30;
     }
     .gold-line-long {
       width: 180px;
@@ -325,10 +332,11 @@
       .container { padding: 0 1.3rem; }
       .detail-card { padding: 1rem 1.2rem; }
       .value { font-size: 1.25rem; }
-      /* ajustar decoraciones en móvil */
-      .birrete-1 { left: 1%; font-size: 2.2rem; }
-      .birrete-2 { right: 1%; font-size: 2.5rem; }
-      .balloon-2 { right: 2%; }
+      
+      /* ajustar decoraciones en móvil (un poco más pequeños pero aún visibles) */
+      .floating-birrete { font-size: 3.2rem; }
+      .floating-balloon { font-size: 3rem; }
+      .birrete-2 { font-size: 3.5rem; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -336,16 +344,19 @@
 <body>
   <div class="glitter-overlay"></div>
 
-  <!-- ELEMENTOS FLOTANTES: BIRRETES Y GLOBOS (ESTILO GRADUACIÓN) -->
+  ---
+  <!-- ELEMENTOS FLOTANTES: BIRRETES Y GLOBOS (MUY VISIBLES) -->
   <div class="floating-birrete birrete-1">🎓</div>
   <div class="floating-birrete birrete-2">🎓</div>
   <div class="floating-birrete birrete-3">🎓</div>
+  <div class="floating-birrete birrete-4">🎓</div> <!-- uno extra -->
   
   <div class="floating-balloon balloon-1 balloon-gold">🎈</div>
   <div class="floating-balloon balloon-2 balloon-wine">🎈</div>
   <div class="floating-balloon balloon-3 balloon-gold">🎈</div>
   <div class="floating-balloon balloon-4 balloon-wine">🎈</div>
-
+  <div class="floating-balloon balloon-5 balloon-gold">🎈</div> <!-- extra -->
+  ---
   <!-- HERO con nombre Alma Delia Guarneros López -->
   <section class="hero" id="inicio" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #080505; position: relative; padding: 2rem 0;">
     <div class="container fade-reveal" style="transition-delay: 0.15s;">
