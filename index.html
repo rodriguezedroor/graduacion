@@ -40,6 +40,8 @@
       max-width: 620px;
       margin: 0 auto;
       padding: 0 2rem;
+      position: relative;
+      z-index: 5;
     }
 
     /* animación de aparición */
@@ -75,7 +77,7 @@
       box-shadow: 0 0 20px #e9c484;
     }
 
-    /* botón principal (único) */
+    /* botón principal */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -132,6 +134,54 @@
       pointer-events: none;
     }
 
+    /* ---- NUEVOS ELEMENTOS DECORATIVOS: BIRRETES Y GLOBOS ---- */
+    .floating-birrete {
+      position: absolute;
+      font-size: 2.8rem;
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.6)) drop-shadow(0 0 8px #b3925a);
+      opacity: 0.7;
+      animation: float 7s infinite ease-in-out;
+    }
+    .floating-balloon {
+      position: absolute;
+      font-size: 2.2rem;
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+      filter: drop-shadow(0 8px 10px #00000066) drop-shadow(0 0 6px #a55238);
+      opacity: 0.6;
+      animation: floatBalloon 9s infinite alternate;
+    }
+    /* variantes de color para globos (vino y dorado) */
+    .balloon-gold {
+      filter: drop-shadow(0 8px 10px #00000066) drop-shadow(0 0 8px #dbb05c);
+    }
+    .balloon-wine {
+      filter: drop-shadow(0 8px 10px #00000066) drop-shadow(0 0 8px #a13e4b);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(3deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    @keyframes floatBalloon {
+      0% { transform: translateY(0px) translateX(0px) rotate(-2deg); }
+      100% { transform: translateY(-24px) translateX(10px) rotate(3deg); }
+    }
+
+    /* posiciones específicas para cada elemento */
+    .birrete-1 { top: 5%; left: 3%; animation-delay: 0s; }
+    .birrete-2 { bottom: 15%; right: 2%; animation-delay: 1.2s; font-size: 3.2rem; }
+    .birrete-3 { top: 20%; right: 8%; animation-delay: 2.5s; opacity: 0.5; }
+    .balloon-1 { bottom: 30%; left: 2%; animation-delay: 0.7s; }
+    .balloon-2 { top: 40%; right: 5%; animation-delay: 1.8s; }
+    .balloon-3 { bottom: 10%; left: 15%; animation-delay: 2.2s; }
+    .balloon-4 { top: 70%; left: 20%; animation-delay: 1.0s; }
+
     /* marco de la foto */
     .portrait-frame {
       width: 140px;
@@ -142,6 +192,7 @@
       padding: 3px;
       box-shadow: 0 0 50px rgba(201, 170, 107, 0.4);
       position: relative;
+      z-index: 10;
     }
     .portrait-inner {
       width: 100%;
@@ -171,6 +222,8 @@
       margin: 2rem 0;
       box-shadow: 0 15px 30px -15px #000000;
       transition: all 0.2s;
+      position: relative;
+      z-index: 10;
     }
     .detail-card:hover {
       border-color: rgba(220, 185, 120, 0.6);
@@ -212,6 +265,8 @@
       padding: 2.8rem 2.5rem;
       border: 1px solid #632b40;
       box-shadow: 0 20px 30px -10px black, inset 0 1px 2px rgba(200, 120, 100, 0.2);
+      position: relative;
+      z-index: 10;
     }
     .testimonial-bg p {
       font-size: 1.7rem;
@@ -232,6 +287,8 @@
       padding: 3rem 2rem;
       text-align: center;
       box-shadow: 0 20px 40px -5px #000, 0 0 0 1px #402b1c inset;
+      position: relative;
+      z-index: 10;
     }
     .btn-wine {
       background: rgba(120, 25, 45, 0.7);
@@ -253,6 +310,8 @@
       padding: 3.5rem 0 2rem;
       text-align: center;
       border-top: 1px solid #392e22;
+      position: relative;
+      z-index: 10;
     }
     .gold-line-long {
       width: 180px;
@@ -266,12 +325,26 @@
       .container { padding: 0 1.3rem; }
       .detail-card { padding: 1rem 1.2rem; }
       .value { font-size: 1.25rem; }
+      /* ajustar decoraciones en móvil */
+      .birrete-1 { left: 1%; font-size: 2.2rem; }
+      .birrete-2 { right: 1%; font-size: 2.5rem; }
+      .balloon-2 { right: 2%; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="glitter-overlay"></div>
+
+  <!-- ELEMENTOS FLOTANTES: BIRRETES Y GLOBOS (ESTILO GRADUACIÓN) -->
+  <div class="floating-birrete birrete-1">🎓</div>
+  <div class="floating-birrete birrete-2">🎓</div>
+  <div class="floating-birrete birrete-3">🎓</div>
+  
+  <div class="floating-balloon balloon-1 balloon-gold">🎈</div>
+  <div class="floating-balloon balloon-2 balloon-wine">🎈</div>
+  <div class="floating-balloon balloon-3 balloon-gold">🎈</div>
+  <div class="floating-balloon balloon-4 balloon-wine">🎈</div>
 
   <!-- HERO con nombre Alma Delia Guarneros López -->
   <section class="hero" id="inicio" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #080505; position: relative; padding: 2rem 0;">
@@ -306,7 +379,7 @@
       <div class="detail-card">
         <span class="icon-lg">⌛</span>
         <div class="card-content">
-          <div class="label-micro">Hora</div>
+          <div class="label-micro">Recepción</div>
           <div class="value">2:30 PM</div>
         </div>
       </div>
@@ -315,7 +388,7 @@
         <span class="icon-lg">📍</span>
         <div class="card-content">
           <div class="label-micro">Lugar</div>
-          <div class="value"><a href="https://maps.app.goo.gl/yTrrfqYPqh6ubrwL7?g_st=aw" target="_blank" rel="noopener">Salón de los Espejos →</a></div>
+          <div class="value"><a href="https://maps.app.goo.gl/yTrrfqYPqh6ubrwL7?g_st=aw" target="_blank" rel="noopener">Salón de los Olivos →</a></div>
         </div>
       </div>
     </div>
@@ -382,8 +455,6 @@
         document.querySelector('.hero .fade-reveal').classList.add('appear');
       });
 
-      // El formulario fue eliminado, solo dejamos el botón de WhatsApp.
-      // Podemos agregar un pequeño mensaje opcional si se desea (sin formulario).
       const whatsappBtn = document.querySelector('.btn-wine');
       if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function() {
@@ -405,5 +476,4 @@
     })();
   </script>
 </body>
-
 </html>
